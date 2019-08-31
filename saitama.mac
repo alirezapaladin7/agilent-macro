@@ -1,0 +1,28 @@
+! First raid for get online data from indtrumant
+! 97/6/9
+
+Name EnterData
+PARAMETER prompt$ DEFAULT "Enter up to 6 Mass parameter"
+LOCAL label, button, t_mass, index, filename$
+Sdim label,6
+Sdim button,2
+Sdim t_mass,6
+label[1] = "mass number 1"
+label[2] = "mass number 2"
+label[3] = "mass number 3"
+label[4] = "mass number 4"
+label[5] = "mass number 5"
+label[6] = "mass number 6"
+
+t_mass[1] = "18"
+t_mass[2] = "12"
+t_mass[3] = "155"
+t_mass[4] = "0"
+t_mass[5] = "0"
+t_mass[6] = "0"
+
+button[1] = "Save and Run"
+button[2] = "Cancel"
+INPUT6 1, 6, prompt$, label, button, t_mass
+
+Return
