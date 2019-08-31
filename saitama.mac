@@ -25,4 +25,23 @@ button[1] = "Save and Run"
 button[2] = "Cancel"
 INPUT6 1, 6, prompt$, label, button, t_mass
 
+IF _Button = 1 ! if user pushed the Save button
+! Create a file to write the strings to
+!
+filename$ = "C:\Users\user.ARIAN-TAJHIZ\Desktop\alireza\online Mass macro\addrfile.txt"
+OPEN filename$ FOR OUTPUT AS #1
+index = 1
+PRINT #1,TIME$()
+WHILE index < 7
+PRINT #1,"MASS NUMBER   IS    --"+t_mass[index]
+index = index+1
+ENDWHILE
+CLOSE #1
+! Display the contents of this file.
+! ViewFile is a system macro defined
+! in Data Analysis CP's.
+!
+!ViewFile filename$
+ENDIF
+
 Return
