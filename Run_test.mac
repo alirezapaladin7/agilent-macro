@@ -1,0 +1,40 @@
+Name Run_test
+
+dim t_mass,7
+
+t_mass[1] = 18
+t_mass[2] = 15
+t_mass[3] = 16
+t_mass[4] = 122
+t_mass[5] = 125
+t_mass[6] = 22
+t_mass[7] = 75
+
+filename$ = "C:\Users\user.ARIAN-TAJHIZ\Desktop\alireza\online Mass macro\test_results.txt"
+OPEN filename$ FOR OUTPUT AS #22
+print #22,time$()
+
+flag_index=1
+
+while flag_index<100 do
+
+index=1
+while index<7 do
+
+
+
+capture t_mass[index],200
+print #22,t_mass[index]
+print #22,CapMean
+
+
+index=index+1
+endwhile
+
+flag_index=flag_index+1
+endwhile
+
+print #22,time$()
+CLOSE #22
+
+Return
