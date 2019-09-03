@@ -1,3 +1,5 @@
+!test for 7 mass in 200 count for 100 round , save results in text file with direct path
+
 Name Run_test
 
 dim t_mass,7
@@ -20,12 +22,11 @@ while flag_index<100 do
 
 index=1
 while index<7 do
-
-
+!print #22,time$()
 
 capture t_mass[index],200
-print #22,t_mass[index]
-print #22,CapMean
+print #22,"Mean of M/z ",t_mass[index]," =  ",CapMean
+! print #22,CapMean
 
 
 index=index+1
