@@ -1,0 +1,49 @@
+!test for scan method , save results in text file with direct path
+
+Name Run_test_scan
+
+S_lowMass=2
+S_HighMass=110
+S_samples=2
+S_threshold=1000
+S_clearDisplay=1
+
+logdata ,1
+bufsize ,65064
+
+filename$ = "C:\mymac\test_results_scan.txt"
+OPEN filename$ FOR OUTPUT AS #22
+print #22,time$(),"   S_LowMass= ",S_LowMass,"   S_HighMass= ",S_HighMass,"   S_samples= ",S_samples,"   S_threshold= ",S_threshold,"   S_clearDisplay= ",S_clearDisplay
+
+flag_index=1
+
+while flag_index<401 do
+
+SCAN S_lowMass,S_HighMass,S_samples,S_threshold,S_clearDisplay
+Print #22,"number of peaks for Run number ",flag_index,"  =   ",NumScanPeaks
+print #22,"base peak (m/z)  =  ",ScanBasePeak
+print #22,"abundance of base peak  =  ",ScanBaseAbund
+print #22,""
+
+
+
+
+Peak_index=1
+while Peak_index<(NumScanPeaks+1) do
+print #22,"for mass  ",scandata[Peak_index,1],"  (m/z) abundance is  ",scandata[Peak_index,2]
+
+Peak_index=Peak_index+1
+endwhile
+
+
+
+print #22,"--------------------------------------------------------"
+
+
+flag_index=flag_index+1
+endwhile
+
+print #22,time$()
+CLOSE #22
+ViewFile filename$
+Return
