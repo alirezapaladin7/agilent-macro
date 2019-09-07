@@ -1,23 +1,29 @@
 !test for scan method , save results in text file with direct path
 
 Name Run_test_scan
-
+!Parameters    !-----------------------------------------------------------------------------------------
 S_lowMass=2
 S_HighMass=110
 S_samples=2
 S_threshold=1000
 S_clearDisplay=1
 
+number_runs=400
+!---------------------------------------------------------------------------------------------------------
 logdata ,1
 bufsize ,65064
 
 filename$ = "C:\mymac\test_results_scan.txt"
+
+chan=ddeinitiate("labview","labdata")
+
+
 OPEN filename$ FOR OUTPUT AS #22
 print #22,time$(),"   S_LowMass= ",S_LowMass,"   S_HighMass= ",S_HighMass,"   S_samples= ",S_samples,"   S_threshold= ",S_threshold,"   S_clearDisplay= ",S_clearDisplay
 
 flag_index=1
 
-while flag_index<401 do
+while flag_index<(number_runs+1) do
 
 SCAN S_lowMass,S_HighMass,S_samples,S_threshold,S_clearDisplay
 Print #22,"number of peaks for Run number ",flag_index,"  =   ",NumScanPeaks
@@ -26,11 +32,13 @@ print #22,"abundance of base peak  =  ",ScanBaseAbund
 print #22,""
 
 
-
-
 Peak_index=1
 while Peak_index<(NumScanPeaks+1) do
-print #22,"for mass  ",scandata[Peak_index,1],"  (m/z) abundance is  ",scandata[Peak_index,2]
+
+mystring$="for mass  "+val$(scandata[Peak_index,1])+"  (m/z) abundance is  "+val$(scandata[Peak_index,2])
+ddepoke chan, "lovelyrecive", mystring$
+
+print #22,mystring$
 
 Peak_index=Peak_index+1
 endwhile
