@@ -16,7 +16,7 @@ bufsize ,65064
 filename$ = "C:\mymac\test_results_scan.txt"
 
 chan=ddeinitiate("labview","labdata")
-
+chanflag=ddeintiate("labview","labflag")
 
 OPEN filename$ FOR OUTPUT AS #22
 print #22,time$(),"   S_LowMass= ",S_LowMass,"   S_HighMass= ",S_HighMass,"   S_samples= ",S_samples,"   S_threshold= ",S_threshold,"   S_clearDisplay= ",S_clearDisplay
